@@ -1,0 +1,175 @@
+<h2>Customer</h2>
+<hr />
+<div class="container border">
+  <h4>Get Customer by Id</h4>
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <label class="sr-only">Customer id</label>
+      <input type="text" class="form-control" placeholder="Customer id" [(ngModel)]="customer.customerId" name="customerId">
+    </div>
+    <button type="button" class="btn btn-primary mb-2" (click)="Getcustomer()">Get</button>
+  </form>
+
+  <div *ngIf="isGetCust" class="border border-secondary">
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Customer id</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.customerId}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">First name</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.firstName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Last name</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.lastName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Phone number</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.phoneNumber}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Address</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.address}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Date of birth</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.dateOfBirth}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <h4>Process Customer</h4>
+  <form>
+    <div class="row">
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="First name" [(ngModel)]="customer.firstName" name="firstName">
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="customer.lastName" name="lastName">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Phone number" [(ngModel)]="customer.phoneNumber" name="phoneNumber">
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Address" [(ngModel)]="customer.address" name="address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Date of birth" [(ngModel)]="customer.dateOfBirth" name="dateOfBirth">
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary mb-2" (click)="ProcessCustomer()">Process</button>
+    <button type="button" class="btn btn-danger mb-2" (click)="SearchCustomer()">Search</button>
+  </form>
+
+  <div *ngIf="isPrcCust">
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Customer id</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.customerId}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">First name</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.firstName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Last name</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.lastName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Phone number</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.phoneNumber}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Address</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.address}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="col-sm-2 col-form-label">Date of birth</label>
+      </div>
+      <div class="col">
+        <label class="col-sm-2 col-form-label">{{customer?.dateOfBirth}}</label>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isSearchCustS">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <td>CustomerId</td>
+          <td>FirstName</td>
+          <td>LastName</td>
+          <td>PhoneNumber</td>
+          <td>Address</td>
+          <td>DateOfBirth</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cust of customers">
+          <td>{{cust.customerId}}</td>
+          <td>{{cust.firstName}}</td>
+          <td>{{cust.lastName}}</td>
+          <td>{{cust.phoneNumber}}</td>
+          <td>{{cust.address}}</td>
+          <td>{{cust.dateOfBirth}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
