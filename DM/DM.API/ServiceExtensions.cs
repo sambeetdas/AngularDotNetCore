@@ -13,7 +13,7 @@ namespace DM.API
             services.AddCors(options =>
             {
                 options.AddPolicy(dnCors,
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder.SetIsOriginAllowed(_ => true)
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());

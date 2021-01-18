@@ -36,54 +36,24 @@ namespace DM.API
             //Extension method created to register the CORS
             services.ConfigureCors(dmCors);
 
-            services.AddScoped<JwtFilter>();
+            services.AddControllers();
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(DMFilter));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddScoped<JwtFilter>();          
             services.AddScoped<IUser, UserHandler>();
             services.AddScoped<ICustomer, CustomerHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-
-            //app.UseExceptionHandler(config =>
-            //{
-            //    config.Run(async context =>
-            //    {
-            //        context.Response.StatusCode = 500;
-            //        context.Response.ContentType = "application/json";
-
-            //        var error = context.Features.Get<IExceptionHandlerFeature>();
-            //        if (error != null)
-            //        {
-            //            var ex = error.Error;
-
-            //            await context.Response.WriteAsync(new DmResponse()
-            //            {
-            //                ResponseCode = "500",
-            //                ResponseBody = ex.Message
-            //            }.ToString()); //ToString() is overridden to Serialize object
-            //        }
-            //    });
-            //});
-
             app.UseCors(dmCors);
-
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+           
         }
     }
 }
