@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Auth.JWT;
+using Auth.JWT.Model;
 using DM.API.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -24,13 +25,13 @@ namespace DM.API.Controllers
         public TokenResponseModel CreateToken([FromBody] DmJwt jwt)
         {
             string secrect = _iconfig.GetSection("Jwt").GetSection("JwtSecrect").Value;
-            int algorithmKey = Convert.ToInt32(_iconfig.GetSection("Jwt").GetSection("JwtAlgKey").Value);
+            string algorithmKey = _iconfig.GetSection("Jwt").GetSection("JwtAlgKey").Value.ToString();
             string expSeconds = _iconfig.GetSection("Jwt").GetSection("JwtExpiry").Value;
 
             JWTModule module = new JWTModule();
             TokenRequestModel reqModel = new TokenRequestModel();
-            reqModel.issuer = jwt.Issuer;
-            reqModel.expiryInSeconds = expSeconds;
+            reqModel.Issuer = jwt.Issuer;
+            reqModel.ExpiryInSeconds = expSeconds;
             var result = module.CreateToken(reqModel, secrect, algorithmKey);
 
             return result;

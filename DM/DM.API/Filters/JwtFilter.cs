@@ -24,7 +24,7 @@ namespace DM.API.Filters
 
                 JWTModule module = new JWTModule();
                 ValidateModel validateModel = new ValidateModel();
-                validateModel.issuer = "admin@abc.com";
+                validateModel.Issuer = "admin@abc.com";
 
                 var verifyResult = module.VerifyToken(token, secrect, validateModel);
 
