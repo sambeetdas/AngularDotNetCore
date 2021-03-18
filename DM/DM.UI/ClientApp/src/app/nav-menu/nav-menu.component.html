@@ -21,22 +21,22 @@
             </div>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-            <a nav-link text-dark [routerLink]='["/"]' (click)='collapse()'>
+            <a class="nav-link text-dark" [routerLink]='["/"]' (click)='collapse()'>
               Home
             </a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf="!authModel.isAuthenticated">
-            <a nav-link text-dark [routerLink]='["/login"]' (click)='collapse()'>
+            <a class="nav-link text-dark" [routerLink]='["/login"]' (click)='collapse()'>
               Login
             </a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf="authModel.isAuthenticated">
-            <a nav-link text-dark [routerLink]='["/customer"]' (click)='collapse()'>
+            <a class="nav-link text-dark" [routerLink]='["/customer"]' (click)='collapse()'>
               Customer
             </a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf="authModel.isAuthenticated">
-            <a nav-link text-dark [routerLink]='["/login"]' (click)='logout()'>
+            <a class="nav-link text-dark" [routerLink]='["/login"]' (click)='logout()'>
               Logout
             </a>
           </li>
